@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Heatnext | Fachplanung buchen</title>
+    <meta name="description" content="Buche einen kostenlosen Fachplanungstermin für deine Viessmann Wärmepumpe. Vor-Ort-Begehung, Heizlastberechnung und verbindliches Angebot." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="est-body">
+
+    <!-- ── TOPBAR ── -->
+    <header class="est-topbar">
+      <a class="est-back" href="estimate.html" aria-label="Zurück zur Schätzung">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M11 14L6 9l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Zurück zur Schätzung
+      </a>
+      <a class="brand" href="index.html" aria-label="Heatnext Startseite">
+        <span class="brand-mark">H</span>
+        <span>Heatnext</span>
+      </a>
+      <div class="est-progress" aria-label="Fortschritt: Schritt 4 abgeschlossen">
+        <span class="is-done"></span>
+        <span class="is-done"></span>
+        <span class="is-done"></span>
+        <span class="is-done"></span>
+      </div>
+    </header>
+
+    <main class="est-page">
+
+      <!-- ── PAGE TITLE ── -->
+      <div class="dc-title-block">
+        <p class="kicker">Letzter Schritt</p>
+        <h1>Der nächste Schritt ist ein Besuch bei dir zuhause.</h1>
+        <p>Wir führen eine Fachplanung durch, um die Schätzung zu präzisieren – kostenlos und unverbindlich.</p>
+      </div>
+
+      <!-- ── ORDER SUMMARY ── -->
+      <section class="est-panel" aria-labelledby="order-title">
+        <h2 id="order-title" class="dc-order-title">Bestellübersicht</h2>
+
+        <div class="dc-order-stack">
+
+          <!-- Home summary -->
+          <div class="dc-order-row dc-home-row">
+            <strong>Dein Haus</strong>
+            <span id="dcAddress">Deine Angaben werden übernommen.</span>
+          </div>
+
+          <!-- What to expect card -->
+          <div class="dc-info-card">
+            <div class="dc-info-icon" aria-hidden="true">
+              <svg width="56" height="56" viewBox="0 0 314 430" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M302.81,430H11.31C5.07,430,0,424.93,0,418.69V50.8C0,44.56,5.07,39.49,11.31,39.49h86.14v-10.7C97.45,22.55,102.52,17.48,108.76,17.48h11.56C126.99,7.19,141.81,0,157.06,0s30.09,7.19,36.76,17.47h11.54c6.24,0,11.31,5.07,11.31,11.31v10.7h86.14c6.24,0,11.31,5.07,11.31,11.31v367.9C314.12,424.93,309.05,430,302.81,430z"/>
+              </svg>
+            </div>
+            <div class="dc-info-body">
+              <h3>Heatnext Fachplanung vor Ort</h3>
+              <ul class="dc-checklist">
+                <li>Ein zertifizierter Viessmann-Partner besucht dein Zuhause</li>
+                <li>Vollständige Begehung: Heizung, Elektrik, Hydraulik und Aufstellort</li>
+                <li>Raumweise Heizlastberechnung nach DIN EN 12831</li>
+                <li>Auslegung des passenden Vitocal-Systems für dein Gebäude</li>
+                <li>Förderprüfung: BEG/KfW und mögliche Heizungstausch-Boni</li>
+                <li>Maßgeschneidertes, verbindliches Angebot – direkt nach dem Termin</li>
+              </ul>
+            </div>
+            <div class="dc-info-price">
+              <span>Kostenlos</span>
+            </div>
+          </div>
+
+          <!-- Price summary -->
+          <div class="dc-price-summary">
+            <div class="dc-price-row">
+              <dt>Beratungsgebühr</dt>
+              <dd>0,00 €</dd>
+            </div>
+            <div class="dc-price-row dc-price-total">
+              <dt><strong>Gesamt</strong></dt>
+              <dd><strong>Kostenlos</strong></dd>
+            </div>
+          </div>
+
+          <!-- Booking form -->
+          <form class="dc-booking-form" id="consultForm" novalidate>
+            <div class="dc-form-check">
+              <input type="checkbox" id="confirmed_owner" name="confirmed_owner" required />
+              <label for="confirmed_owner">
+                Ich bestätige, dass ich Eigentümer dieser Immobilie bin oder zur Vertretung des Eigentümers berechtigt bin.
+              </label>
+            </div>
+
+            <div class="dc-form-fields">
+              <div class="dc-name-row">
+                <label>
+                  Vorname
+                  <input type="text" name="firstName" placeholder="Anna" required autocomplete="given-name" />
+                </label>
+                <label>
+                  Nachname
+                  <input type="text" name="lastName" placeholder="Müller" required autocomplete="family-name" />
+                </label>
+              </div>
+              <label>
+                E-Mail-Adresse
+                <input type="email" name="email" placeholder="anna@beispiel.de" required autocomplete="email" />
+              </label>
+              <label>
+                Telefon (optional)
+                <input type="tel" name="phone" placeholder="+49 151 00000000" autocomplete="tel" />
+              </label>
+              <label>
+                Bevorzugte Zeit
+                <select name="preferredTime">
+                  <option value="">Keine Präferenz</option>
+                  <option value="morning">Vormittags (9–12 Uhr)</option>
+                  <option value="noon">Mittags (12–14 Uhr)</option>
+                  <option value="afternoon">Nachmittags (14–17 Uhr)</option>
+                </select>
+              </label>
+              <label>
+                Anmerkungen (optional)
+                <textarea name="notes" rows="3" placeholder="z. B. Bitte werktags nach 14 Uhr …"></textarea>
+              </label>
+            </div>
+
+            <div class="dc-form-actions">
+              <a class="btn btn-outline" href="estimate.html">Zurück zur Schätzung</a>
+              <button class="btn btn-green" type="submit" id="submitConsult">
+                Termin anfragen →
+              </button>
+            </div>
+
+            <div class="consult-success" id="consultSuccess" hidden>
+              <strong>✓ Anfrage eingegangen!</strong>
+              <p>Wir melden uns innerhalb eines Werktags per E-Mail mit Terminvorschlägen zurück.</p>
+            </div>
+          </form>
+
+        </div>
+      </section>
+
+      <!-- ── ESTIMATE SIDEBAR SUMMARY ── -->
+      <section class="est-panel dc-sidebar" aria-label="Deine Schätzung">
+        <p class="kicker">Deine Schätzung</p>
+        <img id="consultModelImage" src="assets/vitocal-200-a-ie-unit.png" alt="" />
+        <h3 id="consultModel">Vitocal Empfehlung</h3>
+        <dl class="consult-dl">
+          <div><dt>Leistungsbereich</dt><dd id="consultPower">–</dd></div>
+          <div><dt>Investitionsrahmen</dt><dd id="consultCost">–</dd></div>
+          <div><dt>Nach BEG/KfW</dt><dd id="consultNetCost">–</dd></div>
+          <div><dt>Projekt-Fit</dt><dd id="consultFit">–</dd></div>
+        </dl>
+        <div class="dc-trust-items">
+          <div class="dc-trust-item">
+            <span>🕐</span>
+            <div><strong>ca. 90 Minuten</strong><p>Vor-Ort-Termin</p></div>
+          </div>
+          <div class="dc-trust-item">
+            <span>🔒</span>
+            <div><strong>Kein Verkaufsdruck</strong><p>Ehrliche Fachberatung zuerst</p></div>
+          </div>
+          <div class="dc-trust-item">
+            <span>📋</span>
+            <div><strong>Sofortiges Angebot</strong><p>Verbindlich nach dem Termin</p></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand" href="index.html" aria-label="Heatnext">
+          <span class="brand-mark">H</span>
+          <span>Heatnext</span>
+        </a>
+        <span class="footer-note">Unverbindliche Vorabschätzung. Keine finale Fachplanung.</span>
+        <span class="footer-legal">© 2025 Heatnext</span>
+      </div>
+    </footer>
+
+    <script src="consultation.js"></script>
+  </body>
+</html>

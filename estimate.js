@@ -1,79 +1,93 @@
-const storedEstimate = JSON.parse(sessionStorage.getItem("heatnextEstimate") || "null");
+/* ─── Load saved estimate ─── */
+const stored = sessionStorage.getItem("heatnextEstimate");
 
-const fallbackEstimate = {
-  area: 150,
-  city: "Köln",
-  state: "Nordrhein-Westfalen",
-  model: "Vitocal 200-A ie",
-  modelKey: "200",
-  fit: "Gut",
-  minKw: 7,
-  maxKw: 10,
-  costLow: 31000,
-  costHigh: 39000
+const fallback = {
+  area: 150, city: "Köln", state: "Nordrhein-Westfalen",
+  model: "Vitocal 200-A ie", modelKey: "200", fit: "Gut",
+  minKw: 7, maxKw: 10, costLow: 31000, costHigh: 39000
 };
 
-const estimate = storedEstimate || fallbackEstimate;
+const estimate = stored ? JSON.parse(stored) : fallback;
+
 const currency = new Intl.NumberFormat("de-DE", {
-  style: "currency",
-  currency: "EUR",
-  maximumFractionDigits: 0
+  style: "currency", currency: "EUR", maximumFractionDigits: 0
 });
 
-const modelDetails = {
-  250: {
-    image: "assets/vitocal-250-a-unit.png",
-    imageAlt: "Vitocal 250-A Außengerät",
-    copy: "Die robuste Sanierungsrichtung für höhere Vorlauftemperaturen und bestehende Heizkörper."
-  },
-  200: {
-    image: "assets/vitocal-200-a-ie-unit.png",
-    imageAlt: "Vitocal 200-A ie Außengerät",
-    copy: "Die Intelligent-Energy-Richtung für gut vorbereitete Einfamilienhäuser und gemischte Wärmeverteilung."
-  },
-  150: {
-    image: "assets/vitocal-150-a-unit.png",
-    imageAlt: "Vitocal 150-A Außengerät",
-    copy: "Die Einstiegslösung für kleinere oder effizientere Gebäude mit moderatem Wärmebedarf."
-  }
+const modelImages = {
+  "250": "assets/vitocal-250-a-unit.png",
+  "200": "assets/vitocal-200-a-ie-unit.png",
+  "150": "assets/vitocal-150-a-unit.png"
+};
+const modelCopy = {
+  "250": "Für Modernisierungen mit höherer Vorlauftemperatur und bestehender Heizkörperstruktur.",
+  "200": "Ausgewogene Lösung für gut vorbereitete Einfamilienhäuser mit gemischter Wärmeverteilung.",
+  "150": "Attraktiver Einstieg für kleinere Gebäude, Reihenhäuser und effiziente Sanierungsfälle."
 };
 
-const detail = modelDetails[estimate.modelKey] || modelDetails[200];
-const scopeInputs = Array.from(document.querySelectorAll(".hg-details input"));
-
-function updateBaseView() {
-  const grantRate = estimate.fit === "Planung nötig" ? 0.3 : 0.35;
-  const netLow = Math.round((estimate.costLow * (1 - grantRate)) / 500) * 500;
-  const netHigh = Math.round((estimate.costHigh * (1 - grantRate)) / 500) * 500;
-
-  document.querySelector("#estimateAddress").textContent = `${estimate.area} m² Wohnfläche in ${estimate.city || "deinem Ort"}${estimate.state ? `, ${estimate.state}` : ""}`;
-  document.querySelector("#estimateFit").textContent = estimate.fit;
-  document.querySelector("#estimateModel").textContent = estimate.model;
-  document.querySelector("#estimateModelCopy").textContent = detail.copy;
-  document.querySelector("#estimateModelImage").src = detail.image;
-  document.querySelector("#estimateModelImage").alt = detail.imageAlt;
-  document.querySelector("#estimateCost").textContent = `${currency.format(estimate.costLow)}-${currency.format(estimate.costHigh)}`;
-  document.querySelector("#estimateNetCost").textContent = `${currency.format(netLow)}-${currency.format(netHigh)}`;
-  document.querySelector("#estimatePower").textContent = `${estimate.minKw}-${estimate.maxKw} kW`;
-  document.querySelector("#estimateBuilding").textContent = `${estimate.area} m²`;
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
 }
 
-function updateScopeEstimate() {
-  const selected = scopeInputs.filter((input) => input.checked);
-  const addonCost = selected.reduce((sum, input) => sum + Number(input.dataset.cost || 0), 0);
-  const refinedLow = estimate.costLow + addonCost;
-  const refinedHigh = estimate.costHigh + addonCost;
-  const labels = selected
-    .filter((input) => Number(input.dataset.cost || 0) > 0)
-    .map((input) => input.closest(".hg-option")?.querySelector("strong")?.textContent)
+/* ─── Compute net price after BEG grant ─── */
+function computeNet(gross) {
+  const rate = estimate.fit === "Planung nötig" ? 0.3 : 0.35;
+  return Math.round((gross * (1 - rate)) / 500) * 500;
+}
+
+/* ─── Populate page ─── */
+function render() {
+  const { model, modelKey, fit, minKw, maxKw, costLow, costHigh, area, city, state } = estimate;
+  const loc = [city, state].filter(Boolean).join(", ") || "Deutschland";
+
+  setText("estimateAddress", `${area} m² · ${loc}`);
+  setText("estimatePower",   `${minKw}–${maxKw} kW`);
+  setText("estimateFit",     fit);
+  setText("estimateModel",   model);
+  setText("estimateModelCopy", modelCopy[modelKey] || "");
+  setText("estimateCost",    `${currency.format(costLow)}–${currency.format(costHigh)}`);
+  setText("estimateNetCost", `${currency.format(computeNet(costLow))}–${currency.format(computeNet(costHigh))}`);
+
+  const img = document.getElementById("estimateModelImage");
+  if (img) { img.src = modelImages[modelKey] || modelImages["200"]; img.alt = model; }
+
+  /* summary sidebar */
+  setText("summaryModel",    model);
+  setText("summaryNetCost",  `${currency.format(computeNet(costLow))}–${currency.format(computeNet(costHigh))}`);
+  setText("estimateBuilding",`${area} m² · ${state || "DE"}`);
+  setText("refinedCost",     `${currency.format(costLow)}–${currency.format(costHigh)}`);
+  setText("scopeSummary",    "Standardumfang ausgewählt.");
+}
+
+/* ─── Live scope update ─── */
+const optionInputs = Array.from(document.querySelectorAll(".est-option input"));
+
+function updateRefined() {
+  const { costLow, costHigh } = estimate;
+  const addon = optionInputs
+    .filter(i => i.checked)
+    .reduce((s, i) => s + Number(i.dataset.cost || 0), 0);
+
+  const rLow  = costLow  + addon;
+  const rHigh = costHigh + addon;
+
+  setText("refinedCost",    `${currency.format(rLow)}–${currency.format(rHigh)}`);
+  setText("summaryNetCost", `${currency.format(computeNet(rLow))}–${currency.format(computeNet(rHigh))}`);
+
+  const labels = optionInputs
+    .filter(i => i.checked && Number(i.dataset.cost || 0) > 0)
+    .map(i => i.closest(".est-option")?.querySelector("strong")?.textContent)
     .filter(Boolean);
 
-  document.querySelector("#refinedCost").textContent = `${currency.format(refinedLow)}-${currency.format(refinedHigh)}`;
-  document.querySelector("#scopeSummary").textContent = labels.length
-    ? `Zusätzlich berücksichtigt: ${labels.join(", ")}.`
-    : "Standardumfang ausgewählt.";
+  setText("scopeSummary", labels.length
+    ? `Enthält: ${labels.join(", ")}.`
+    : "Standardumfang ausgewählt.");
+
+  /* persist refined for consultation page */
+  sessionStorage.setItem("heatnextEstimate", JSON.stringify({ ...estimate, refinedLow: rLow, refinedHigh: rHigh }));
 }
 
-scopeInputs.forEach((input) => input.addEventListener("change", updateScopeEstimate));
-updateBaseView();
-updateScopeEstimate();
+optionInputs.forEach(i => i.addEventListener("change", updateRefined));
+
+render();
+updateRefined();
