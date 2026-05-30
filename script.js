@@ -18,7 +18,7 @@ let currentStep = 0;
 const modelDetails = {
   250: {
     title: "Vitocal 250-A",
-    image: "assets/vitocal-250-a-unit.jpg",
+    image: "assets/vitocal-250-a-unit.png",
     imageAlt: "Vitocal 250-A Außengerät",
     lead: "Die Vitocal 250-A ist die stärkste Richtung für viele Sanierungen, wenn vorhandene Heizkörper weiter genutzt werden sollen und höhere Vorlauftemperaturen gefordert sind.",
     use: "Altbau und Sanierung",
@@ -28,7 +28,7 @@ const modelDetails = {
   },
   200: {
     title: "Vitocal 200-A ie",
-    image: "assets/vitocal-200-a-ie-unit.jpg",
+    image: "assets/vitocal-200-a-ie-unit.png",
     imageAlt: "Vitocal 200-A ie Außengerät",
     lead: "Die Vitocal 200-A ie ist eine ausgewogene Luft-Wasser-Wärmepumpe für gut vorbereitete Einfamilienhäuser und gemischte Wärmeverteilung. Das Kürzel ie steht für Intelligent Energy.",
     use: "Modernisierte Wohnhäuser",
@@ -38,7 +38,7 @@ const modelDetails = {
   },
   150: {
     title: "Vitocal 150-A",
-    image: "assets/vitocal-150-a-unit.jpg",
+    image: "assets/vitocal-150-a-unit.png",
     imageAlt: "Vitocal 150-A Außengerät",
     lead: "Die Vitocal 150-A ist eine attraktive Einstiegsrichtung für kleinere oder effizientere Gebäude mit moderatem Wärmebedarf.",
     use: "Kleinere Häuser",
