@@ -3,187 +3,250 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Heatnext | Fachplanung buchen</title>
-    <meta name="description" content="Buche einen kostenlosen Fachplanungstermin für deine Viessmann Wärmepumpe. Vor-Ort-Begehung, Heizlastberechnung und verbindliches Angebot." />
+    <title>Beratungstermin buchen – Heatnext</title>
+    <meta name="description" content="Buche deinen kostenlosen Vor-Ort-Beratungstermin für deine Viessmann Wärmepumpe." />
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800,900&display=swap" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="est-body">
+  <body>
 
-    <!-- ── TOPBAR ── -->
-    <header class="est-topbar">
-      <a class="est-back" href="estimate.html" aria-label="Zurück zur Schätzung">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-          <path d="M11 14L6 9l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Zurück zur Schätzung
-      </a>
-      <a class="brand" href="index.html" aria-label="Heatnext Startseite">
-        <span class="brand-mark">H</span>
-        <span>Heatnext</span>
-      </a>
-      <div class="est-progress" aria-label="Fortschritt: Schritt 4 abgeschlossen">
-        <span class="is-done"></span>
-        <span class="is-done"></span>
-        <span class="is-done"></span>
-        <span class="is-done"></span>
+    <!-- TOPBAR -->
+    <div class="est-topbar">
+      <a href="estimate.html" class="est-topbar-back">&larr; Zurück</a>
+      <div class="est-topbar-logo">
+        <span class="nav-logo-chip">H</span>
+        Heatnext
       </div>
-    </header>
+      <div class="est-progress-bars">
+        <div class="est-bar"></div>
+        <div class="est-bar"></div>
+        <div class="est-bar"></div>
+        <div class="est-bar"></div>
+      </div>
+    </div>
 
-    <main class="est-page">
+    <!-- MAIN -->
+    <main class="dc-main">
 
-      <!-- ── PAGE TITLE ── -->
-      <div class="dc-title-block">
-        <p class="kicker">Letzter Schritt</p>
+      <!-- LEFT COLUMN -->
+      <div class="dc-left">
+        <span class="kicker dc-kicker">Schritt 4 von 4 &middot; Fast geschafft</span>
         <h1>Der nächste Schritt ist ein Besuch bei dir zuhause.</h1>
-        <p>Wir führen eine Fachplanung durch, um die Schätzung zu präzisieren – kostenlos und unverbindlich.</p>
-      </div>
+        <p class="dc-intro">
+          Unser Fachplaner kommt kostenlos zu dir, schaut sich die Situation vor Ort an und erstellt ein verbindliches Festpreisangebot. Kein Verkaufsdruck – nur fundierte Planung.
+        </p>
 
-      <!-- ── ORDER SUMMARY ── -->
-      <section class="est-panel" aria-labelledby="order-title">
-        <h2 id="order-title" class="dc-order-title">Bestellübersicht</h2>
+        <!-- Bestellübersicht -->
+        <section class="dc-section">
+          <div class="dc-section-title">Bestellübersicht</div>
 
-        <div class="dc-order-stack">
-
-          <!-- Home summary -->
-          <div class="dc-order-row dc-home-row">
-            <strong>Dein Haus</strong>
-            <span id="dcAddress">Deine Angaben werden übernommen.</span>
+          <div class="dc-address-card" id="dcAddress">
+            Deine Adresse wird aus der Schätzung geladen …
           </div>
 
-          <!-- What to expect card -->
-          <div class="dc-info-card">
-            <div class="dc-info-icon" aria-hidden="true">
-              <svg width="56" height="56" viewBox="0 0 314 430" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M302.81,430H11.31C5.07,430,0,424.93,0,418.69V50.8C0,44.56,5.07,39.49,11.31,39.49h86.14v-10.7C97.45,22.55,102.52,17.48,108.76,17.48h11.56C126.99,7.19,141.81,0,157.06,0s30.09,7.19,36.76,17.47h11.54c6.24,0,11.31,5.07,11.31,11.31v10.7h86.14c6.24,0,11.31,5.07,11.31,11.31v367.9C314.12,424.93,309.05,430,302.81,430z"/>
+          <div class="dc-product-card">
+            <div class="dc-product-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                <rect x="9" y="3" width="6" height="4" rx="1"/>
+                <path d="M9 12h6M9 16h4"/>
               </svg>
             </div>
-            <div class="dc-info-body">
-              <h3>Heatnext Fachplanung vor Ort</h3>
+            <div class="dc-product-info">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;">
+                <div class="dc-product-title">Heatnext Fachplanung vor Ort</div>
+                <div class="dc-product-free">Kostenlos</div>
+              </div>
               <ul class="dc-checklist">
-                <li>Ein zertifizierter Viessmann-Partner besucht dein Zuhause</li>
-                <li>Vollständige Begehung: Heizung, Elektrik, Hydraulik und Aufstellort</li>
-                <li>Raumweise Heizlastberechnung nach DIN EN 12831</li>
-                <li>Auslegung des passenden Vitocal-Systems für dein Gebäude</li>
-                <li>Förderprüfung: BEG/KfW und mögliche Heizungstausch-Boni</li>
-                <li>Maßgeschneidertes, verbindliches Angebot – direkt nach dem Termin</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Heizlastberechnung nach DIN EN 12831</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Prüfung Aufstellort &amp; Schallschutz</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Hydraulik- und Vorlauftemperaturanalyse</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Persönliche BEG-Förderberatung</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Verbindliches Festpreisangebot</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Kein Verkaufsdruck, kein Folgeauftrag nötig</li>
               </ul>
             </div>
-            <div class="dc-info-price">
-              <span>Kostenlos</span>
-            </div>
           </div>
 
-          <!-- Price summary -->
-          <div class="dc-price-summary">
-            <div class="dc-price-row">
-              <dt>Beratungsgebühr</dt>
-              <dd>0,00 €</dd>
-            </div>
-            <div class="dc-price-row dc-price-total">
-              <dt><strong>Gesamt</strong></dt>
-              <dd><strong>Kostenlos</strong></dd>
-            </div>
+          <table class="dc-price-table">
+            <tbody>
+              <tr>
+                <td>Beratungsgebühr</td>
+                <td class="dc-price-right">0,00&nbsp;€</td>
+              </tr>
+              <tr>
+                <td><strong>Total</strong></td>
+                <td class="dc-price-right"><strong>Kostenlos</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Buchungsformular -->
+        <section class="dc-section">
+          <div class="dc-section-title">Deine Angaben</div>
+
+          <div id="consultSuccess" class="dc-success" hidden>
+            <div class="dc-success-icon">&#10003;</div>
+            <h2>Anfrage gesendet!</h2>
+            <p>Wir melden uns innerhalb von 24 Stunden bei dir, um den Termin zu bestätigen. Schau auch in deinen Spam-Ordner.</p>
           </div>
 
-          <!-- Booking form -->
-          <form class="dc-booking-form" id="consultForm" novalidate>
-            <div class="dc-form-check">
-              <input type="checkbox" id="confirmed_owner" name="confirmed_owner" required />
-              <label for="confirmed_owner">
-                Ich bestätige, dass ich Eigentümer dieser Immobilie bin oder zur Vertretung des Eigentümers berechtigt bin.
-              </label>
+          <form class="dc-form" id="consultForm" novalidate>
+            <div class="dc-checkbox-row">
+              <input type="checkbox" id="ownerConfirm" name="ownerConfirm" required />
+              <label for="ownerConfirm">Ich bin Eigentümer oder bevollmächtigter Vertreter des Gebäudes und stimme der kostenlosen Vor-Ort-Begehung zu.</label>
             </div>
 
-            <div class="dc-form-fields">
-              <div class="dc-name-row">
-                <label>
-                  Vorname
-                  <input type="text" name="firstName" placeholder="Anna" required autocomplete="given-name" />
-                </label>
-                <label>
-                  Nachname
-                  <input type="text" name="lastName" placeholder="Müller" required autocomplete="family-name" />
-                </label>
+            <div class="dc-field-row">
+              <div>
+                <label class="field-label" for="lastName">Nachname</label>
+                <input class="field-input" type="text" id="lastName" name="lastName" placeholder="Mustermann" required />
               </div>
-              <label>
-                E-Mail-Adresse
-                <input type="email" name="email" placeholder="anna@beispiel.de" required autocomplete="email" />
-              </label>
-              <label>
-                Telefon (optional)
-                <input type="tel" name="phone" placeholder="+49 151 00000000" autocomplete="tel" />
-              </label>
-              <label>
-                Bevorzugte Zeit
-                <select name="preferredTime">
-                  <option value="">Keine Präferenz</option>
-                  <option value="morning">Vormittags (9–12 Uhr)</option>
-                  <option value="noon">Mittags (12–14 Uhr)</option>
-                  <option value="afternoon">Nachmittags (14–17 Uhr)</option>
-                </select>
-              </label>
-              <label>
-                Anmerkungen (optional)
-                <textarea name="notes" rows="3" placeholder="z. B. Bitte werktags nach 14 Uhr …"></textarea>
-              </label>
+              <div>
+                <label class="field-label" for="firstName">Vorname</label>
+                <input class="field-input" type="text" id="firstName" name="firstName" placeholder="Max" required />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="email">E-Mail-Adresse</label>
+              <input class="field-input" type="email" id="email" name="email" placeholder="max@beispiel.de" required />
+            </div>
+
+            <div>
+              <label class="field-label" for="phone">Telefonnummer</label>
+              <input class="field-input" type="tel" id="phone" name="phone" placeholder="+49 (0) 221 …" />
+            </div>
+
+            <div>
+              <label class="field-label" for="preferredTime">Bevorzugte Zeit</label>
+              <select class="field-input" id="preferredTime" name="preferredTime">
+                <option value="">Keine Präferenz</option>
+                <option value="morning">Morgens (8–12 Uhr)</option>
+                <option value="noon">Mittags (12–15 Uhr)</option>
+                <option value="afternoon">Nachmittags (15–18 Uhr)</option>
+                <option value="weekend">Wochenende</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="notes">Anmerkungen (optional)</label>
+              <textarea class="field-input" id="notes" name="notes" rows="3" placeholder="Besonderheiten am Gebäude, Erreichbarkeit, spezielle Fragen …" style="resize:vertical;"></textarea>
             </div>
 
             <div class="dc-form-actions">
-              <a class="btn btn-outline" href="estimate.html">Zurück zur Schätzung</a>
-              <button class="btn btn-green" type="submit" id="submitConsult">
-                Termin anfragen →
-              </button>
-            </div>
-
-            <div class="consult-success" id="consultSuccess" hidden>
-              <strong>✓ Anfrage eingegangen!</strong>
-              <p>Wir melden uns innerhalb eines Werktags per E-Mail mit Terminvorschlägen zurück.</p>
+              <a href="estimate.html" class="btn btn-outline">Zurück zur Schätzung</a>
+              <button type="submit" class="btn btn-green" id="submitConsult">Termin anfragen &rarr;</button>
             </div>
           </form>
+        </section>
+      </div>
 
+      <!-- RIGHT SIDEBAR -->
+      <div class="dc-right">
+        <div class="dc-sidebar-panel">
+          <div class="dc-sidebar-image">
+            <img id="consultModelImage" src="assets/vitocal-200-a-ie-unit.png" alt="Vitocal Außengerät" />
+          </div>
+          <div class="dc-sidebar-body">
+            <h3 id="consultModel">Vitocal 200-A ie</h3>
+            <dl class="dc-sidebar-dl">
+              <dt>Leistung</dt>
+              <dd id="consultPower">7–10 kW</dd>
+              <dt>Investition</dt>
+              <dd id="consultCost">31.000–39.000 €</dd>
+              <dt>Nach Förderung</dt>
+              <dd id="consultNetCost">ab 20.000 €</dd>
+              <dt>Projekt-Fit</dt>
+              <dd id="consultFit">Gut</dd>
+            </dl>
+          </div>
         </div>
-      </section>
 
-      <!-- ── ESTIMATE SIDEBAR SUMMARY ── -->
-      <section class="est-panel dc-sidebar" aria-label="Deine Schätzung">
-        <p class="kicker">Deine Schätzung</p>
-        <img id="consultModelImage" src="assets/vitocal-200-a-ie-unit.png" alt="" />
-        <h3 id="consultModel">Vitocal Empfehlung</h3>
-        <dl class="consult-dl">
-          <div><dt>Leistungsbereich</dt><dd id="consultPower">–</dd></div>
-          <div><dt>Investitionsrahmen</dt><dd id="consultCost">–</dd></div>
-          <div><dt>Nach BEG/KfW</dt><dd id="consultNetCost">–</dd></div>
-          <div><dt>Projekt-Fit</dt><dd id="consultFit">–</dd></div>
-        </dl>
         <div class="dc-trust-items">
           <div class="dc-trust-item">
-            <span>🕐</span>
-            <div><strong>ca. 90 Minuten</strong><p>Vor-Ort-Termin</p></div>
+            <div class="dc-trust-num">90 Min</div>
+            <div class="dc-trust-text">typische Dauer der Vor-Ort-Begehung</div>
           </div>
           <div class="dc-trust-item">
-            <span>🔒</span>
-            <div><strong>Kein Verkaufsdruck</strong><p>Ehrliche Fachberatung zuerst</p></div>
+            <div class="dc-trust-num">0 €</div>
+            <div class="dc-trust-text">Kein Verkaufsdruck, keine versteckten Kosten</div>
           </div>
           <div class="dc-trust-item">
-            <span>📋</span>
-            <div><strong>Sofortiges Angebot</strong><p>Verbindlich nach dem Termin</p></div>
+            <div class="dc-trust-num">Sofort</div>
+            <div class="dc-trust-text">Verbindliches Angebot noch vor Ort</div>
           </div>
         </div>
-      </section>
+      </div>
 
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <a class="brand" href="index.html" aria-label="Heatnext">
-          <span class="brand-mark">H</span>
-          <span>Heatnext</span>
-        </a>
-        <span class="footer-note">Unverbindliche Vorabschätzung. Keine finale Fachplanung.</span>
-        <span class="footer-legal">© 2025 Heatnext</span>
-      </div>
-    </footer>
+    <script>
+      (function () {
+        const raw = sessionStorage.getItem("heatnextEstimate");
+        const fmt = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 
-    <script src="consultation.js"></script>
+        const fallback = {
+          area: 150,
+          city: "Köln",
+          state: "Nordrhein-Westfalen",
+          model: "Vitocal 200-A ie",
+          modelKey: "200",
+          fit: "Gut",
+          minKw: 7,
+          maxKw: 10,
+          costLow: 31000,
+          costHigh: 39000
+        };
+
+        const modelImages = {
+          "250": "assets/vitocal-250-a-unit.png",
+          "200": "assets/vitocal-200-a-ie-unit.png",
+          "150": "assets/vitocal-150-a-unit.png"
+        };
+        const modelAlts = {
+          "250": "Vitocal 250-A Außengerät",
+          "200": "Vitocal 200-A ie Außengerät",
+          "150": "Vitocal 150-A Außengerät"
+        };
+
+        let e = fallback;
+        try { if (raw) e = JSON.parse(raw); } catch (_) {}
+
+        const grantRate = e.fit === "Planung nötig" ? 0.3 : 0.35;
+        const netLow = Math.round((e.costLow * (1 - grantRate)) / 500) * 500;
+        const netHigh = Math.round((e.costHigh * (1 - grantRate)) / 500) * 500;
+
+        const set = (id, val) => { const el = document.querySelector("#" + id); if (el) el.textContent = val; };
+        const setAttr = (id, attr, val) => { const el = document.querySelector("#" + id); if (el) el[attr] = val; };
+
+        set("dcAddress", `${e.area} m² Wohnfläche in ${e.city || "deinem Ort"}${e.state ? ", " + e.state : ""}`);
+        set("consultModel", e.model);
+        set("consultPower", `${e.minKw}–${e.maxKw} kW`);
+        set("consultCost", `${fmt.format(e.costLow)}–${fmt.format(e.costHigh)}`);
+        set("consultNetCost", `${fmt.format(netLow)}–${fmt.format(netHigh)}`);
+        set("consultFit", e.fit);
+        setAttr("consultModelImage", "src", modelImages[e.modelKey] || modelImages["200"]);
+        setAttr("consultModelImage", "alt", modelAlts[e.modelKey] || modelAlts["200"]);
+
+        // Form submit
+        const form = document.querySelector("#consultForm");
+        const success = document.querySelector("#consultSuccess");
+        if (form && success) {
+          form.addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            if (!form.checkValidity()) {
+              const invalid = form.querySelector(":invalid");
+              if (invalid) invalid.reportValidity();
+              return;
+            }
+            form.hidden = true;
+            success.hidden = false;
+            success.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
