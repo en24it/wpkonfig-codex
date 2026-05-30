@@ -1,76 +1,252 @@
-/* ─── Load saved estimate ─── */
-const stored = sessionStorage.getItem("heatnextEstimate");
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beratungstermin buchen – ENERGIE24next</title>
+    <meta name="description" content="Buche deinen kostenlosen Vor-Ort-Beratungstermin für deine Viessmann Wärmepumpe." />
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
 
-const fallback = {
-  area: 150, city: "Köln", state: "Nordrhein-Westfalen",
-  model: "Vitocal 200-A ie", modelKey: "200", fit: "Gut",
-  minKw: 7, maxKw: 10, costLow: 31000, costHigh: 39000
-};
+    <!-- TOPBAR -->
+    <div class="est-topbar">
+      <a href="estimate.html" class="est-topbar-back">&larr; Zurück</a>
+      <div class="est-topbar-logo">
+        <span class="nav-logo-chip">E24</span>
+        ENERGIE24next
+      </div>
+      <div class="est-progress-bars">
+        <div class="est-bar"></div>
+        <div class="est-bar"></div>
+        <div class="est-bar"></div>
+        <div class="est-bar"></div>
+      </div>
+    </div>
 
-const estimate = stored ? JSON.parse(stored) : fallback;
+    <!-- MAIN -->
+    <main class="dc-main">
 
-const currency = new Intl.NumberFormat("de-DE", {
-  style: "currency", currency: "EUR", maximumFractionDigits: 0
-});
+      <!-- LEFT COLUMN -->
+      <div class="dc-left">
+        <span class="kicker dc-kicker">Schritt 4 von 4 &middot; Fast geschafft</span>
+        <h1>Der nächste Schritt ist ein Besuch bei dir zuhause.</h1>
+        <p class="dc-intro">
+          Unser Fachplaner kommt kostenlos zu dir, schaut sich die Situation vor Ort an und erstellt ein verbindliches Festpreisangebot. Kein Verkaufsdruck – nur fundierte Planung.
+        </p>
 
-const modelImages = {
-  "250": "assets/vitocal-250-a-unit.png",
-  "200": "assets/vitocal-200-a-ie-unit.png",
-  "150": "assets/vitocal-150-a-unit.png"
-};
+        <!-- Bestellübersicht -->
+        <section class="dc-section">
+          <div class="dc-section-title">Bestellübersicht</div>
 
-function setText(id, val) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = val;
-}
+          <div class="dc-address-card" id="dcAddress">
+            Deine Adresse wird aus der Schätzung geladen …
+          </div>
 
-function computeNet(gross) {
-  const rate = estimate.fit === "Planung nötig" ? 0.3 : 0.35;
-  return Math.round((gross * (1 - rate)) / 500) * 500;
-}
+          <div class="dc-product-card">
+            <div class="dc-product-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                <rect x="9" y="3" width="6" height="4" rx="1"/>
+                <path d="M9 12h6M9 16h4"/>
+              </svg>
+            </div>
+            <div class="dc-product-info">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;">
+                <div class="dc-product-title">ENERGIE24next Fachplanung vor Ort</div>
+                <div class="dc-product-free">Kostenlos</div>
+              </div>
+              <ul class="dc-checklist">
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Heizlastberechnung nach DIN EN 12831</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Prüfung Aufstellort &amp; Schallschutz</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Hydraulik- und Vorlauftemperaturanalyse</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Persönliche BEG-Förderberatung</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Verbindliches Festpreisangebot</li>
+                <li class="dc-check"><span class="dc-check-icon">&#10003;</span>Kein Verkaufsdruck, kein Folgeauftrag nötig</li>
+              </ul>
+            </div>
+          </div>
 
-/* ─── Populate sidebar summary ─── */
-function render() {
-  const { model, modelKey, fit, minKw, maxKw, costLow, costHigh, refinedLow, refinedHigh, area, city, state } = estimate;
-  const low  = refinedLow  || costLow;
-  const high = refinedHigh || costHigh;
+          <table class="dc-price-table">
+            <tbody>
+              <tr>
+                <td>Beratungsgebühr</td>
+                <td class="dc-price-right">0,00&nbsp;€</td>
+              </tr>
+              <tr>
+                <td><strong>Total</strong></td>
+                <td class="dc-price-right"><strong>Kostenlos</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
-  const loc = [area ? `${area} m²` : null, city, state].filter(Boolean).join(", ");
-  setText("dcAddress", loc || "Deine Angaben");
+        <!-- Buchungsformular -->
+        <section class="dc-section">
+          <div class="dc-section-title">Deine Angaben</div>
 
-  setText("consultModel",   model);
-  setText("consultPower",   `${minKw}–${maxKw} kW`);
-  setText("consultCost",    `${currency.format(low)}–${currency.format(high)}`);
-  setText("consultNetCost", `${currency.format(computeNet(low))}–${currency.format(computeNet(high))}`);
-  setText("consultFit",     fit);
+          <div id="consultSuccess" class="dc-success" hidden>
+            <div class="dc-success-icon">&#10003;</div>
+            <h2>Anfrage gesendet!</h2>
+            <p>Wir melden uns innerhalb von 24 Stunden bei dir, um den Termin zu bestätigen. Schau auch in deinen Spam-Ordner.</p>
+          </div>
 
-  const img = document.getElementById("consultModelImage");
-  if (img) { img.src = modelImages[modelKey] || modelImages["200"]; img.alt = model; }
-}
+          <form class="dc-form" id="consultForm" novalidate>
+            <div class="dc-checkbox-row">
+              <input type="checkbox" id="ownerConfirm" name="ownerConfirm" required />
+              <label for="ownerConfirm">Ich bin Eigentümer oder bevollmächtigter Vertreter des Gebäudes und stimme der kostenlosen Vor-Ort-Begehung zu.</label>
+            </div>
 
-/* ─── Form submit ─── */
-const form    = document.getElementById("consultForm");
-const success = document.getElementById("consultSuccess");
-const btn     = document.getElementById("submitConsult");
+            <div class="dc-field-row">
+              <div>
+                <label class="field-label" for="lastName">Nachname</label>
+                <input class="field-input" type="text" id="lastName" name="lastName" placeholder="Mustermann" required />
+              </div>
+              <div>
+                <label class="field-label" for="firstName">Vorname</label>
+                <input class="field-input" type="text" id="firstName" name="firstName" placeholder="Max" required />
+              </div>
+            </div>
 
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+            <div>
+              <label class="field-label" for="email">E-Mail-Adresse</label>
+              <input class="field-input" type="email" id="email" name="email" placeholder="max@beispiel.de" required />
+            </div>
 
-    /* Collect data */
-    const data = Object.fromEntries(new FormData(form).entries());
-    const payload = { ...data, estimate };
+            <div>
+              <label class="field-label" for="phone">Telefonnummer</label>
+              <input class="field-input" type="tel" id="phone" name="phone" placeholder="+49 (0) 221 …" />
+            </div>
 
-    /* In a real app: POST to API. Here we simulate success. */
-    btn.disabled = true;
-    btn.textContent = "Wird gesendet…";
+            <div>
+              <label class="field-label" for="preferredTime">Bevorzugte Zeit</label>
+              <select class="field-input" id="preferredTime" name="preferredTime">
+                <option value="">Keine Präferenz</option>
+                <option value="morning">Morgens (8–12 Uhr)</option>
+                <option value="noon">Mittags (12–15 Uhr)</option>
+                <option value="afternoon">Nachmittags (15–18 Uhr)</option>
+                <option value="weekend">Wochenende</option>
+              </select>
+            </div>
 
-    setTimeout(() => {
-      form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
-      if (success) success.hidden = false;
-    }, 900);
-  });
-}
+            <div>
+              <label class="field-label" for="notes">Anmerkungen (optional)</label>
+              <textarea class="field-input" id="notes" name="notes" rows="3" placeholder="Besonderheiten am Gebäude, Erreichbarkeit, spezielle Fragen …" style="resize:vertical;"></textarea>
+            </div>
 
-render();
+            <div class="dc-form-actions">
+              <a href="estimate.html" class="btn btn-outline">Zurück zur Schätzung</a>
+              <button type="submit" class="btn btn-green" id="submitConsult">Termin anfragen &rarr;</button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="dc-right">
+        <div class="dc-sidebar-panel">
+          <div class="dc-sidebar-image">
+            <img id="consultModelImage" src="assets/vitocal-200-a-ie-unit.png" alt="Vitocal Außengerät" />
+          </div>
+          <div class="dc-sidebar-body">
+            <h3 id="consultModel">Vitocal 200-A ie</h3>
+            <dl class="dc-sidebar-dl">
+              <dt>Leistung</dt>
+              <dd id="consultPower">7–10 kW</dd>
+              <dt>Investition</dt>
+              <dd id="consultCost">31.000–39.000 €</dd>
+              <dt>Nach Förderung</dt>
+              <dd id="consultNetCost">ab 20.000 €</dd>
+              <dt>Projekt-Fit</dt>
+              <dd id="consultFit">Gut</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="dc-trust-items">
+          <div class="dc-trust-item">
+            <div class="dc-trust-num">90 Min</div>
+            <div class="dc-trust-text">typische Dauer der Vor-Ort-Begehung</div>
+          </div>
+          <div class="dc-trust-item">
+            <div class="dc-trust-num">0 €</div>
+            <div class="dc-trust-text">Kein Verkaufsdruck, keine versteckten Kosten</div>
+          </div>
+          <div class="dc-trust-item">
+            <div class="dc-trust-num">Sofort</div>
+            <div class="dc-trust-text">Verbindliches Angebot noch vor Ort</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <script>
+      (function () {
+        const raw = sessionStorage.getItem("energie24nextEstimate");
+        const fmt = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+
+        const fallback = {
+          area: 150,
+          city: "Köln",
+          state: "Nordrhein-Westfalen",
+          model: "Vitocal 200-A ie",
+          modelKey: "200",
+          fit: "Gut",
+          minKw: 7,
+          maxKw: 10,
+          costLow: 31000,
+          costHigh: 39000
+        };
+
+        const modelImages = {
+          "250": "assets/vitocal-250-a-unit.png",
+          "200": "assets/vitocal-200-a-ie-unit.png",
+          "150": "assets/vitocal-150-a-unit.png"
+        };
+        const modelAlts = {
+          "250": "Vitocal 250-A Außengerät",
+          "200": "Vitocal 200-A ie Außengerät",
+          "150": "Vitocal 150-A Außengerät"
+        };
+
+        let e = fallback;
+        try { if (raw) e = JSON.parse(raw); } catch (_) {}
+
+        const grantRate = e.fit === "Planung nötig" ? 0.3 : 0.35;
+        const netLow = Math.round((e.costLow * (1 - grantRate)) / 500) * 500;
+        const netHigh = Math.round((e.costHigh * (1 - grantRate)) / 500) * 500;
+
+        const set = (id, val) => { const el = document.querySelector("#" + id); if (el) el.textContent = val; };
+        const setAttr = (id, attr, val) => { const el = document.querySelector("#" + id); if (el) el[attr] = val; };
+
+        set("dcAddress", `${e.area} m² Wohnfläche in ${e.city || "deinem Ort"}${e.state ? ", " + e.state : ""}`);
+        set("consultModel", e.model);
+        set("consultPower", `${e.minKw}–${e.maxKw} kW`);
+        set("consultCost", `${fmt.format(e.costLow)}–${fmt.format(e.costHigh)}`);
+        set("consultNetCost", `${fmt.format(netLow)}–${fmt.format(netHigh)}`);
+        set("consultFit", e.fit);
+        setAttr("consultModelImage", "src", modelImages[e.modelKey] || modelImages["200"]);
+        setAttr("consultModelImage", "alt", modelAlts[e.modelKey] || modelAlts["200"]);
+
+        // Form submit
+        const form = document.querySelector("#consultForm");
+        const success = document.querySelector("#consultSuccess");
+        if (form && success) {
+          form.addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            if (!form.checkValidity()) {
+              const invalid = form.querySelector(":invalid");
+              if (invalid) invalid.reportValidity();
+              return;
+            }
+            form.hidden = true;
+            success.hidden = false;
+            success.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
