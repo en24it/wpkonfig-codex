@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Heatnext | Deine Wärmepumpen-Schätzung</title>
+    <meta
+      name="description"
+      content="Detailseite zur Viessmann Wärmepumpen-Schätzung mit Projektumfang, Kostenrahmen und nächsten Schritten."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="estimate-body">
+    <header class="estimate-topbar">
+      <a class="brand" href="index.html" aria-label="Heatnext Startseite">
+        <span class="brand-mark">H</span>
+        <span>Heatnext</span>
+      </a>
+      <a class="estimate-back" href="index.html#check">Angaben ändern</a>
+    </header>
+
+    <main class="hg-estimate-page">
+      <section class="hg-hero-panel" aria-labelledby="hg-title">
+        <div class="hg-progress" aria-label="Fortschritt">
+          <span class="is-complete"></span>
+          <span class="is-complete"></span>
+          <span class="is-complete"></span>
+          <span class="is-active"></span>
+        </div>
+
+        <div class="hg-title-row">
+          <div>
+            <p class="hg-kicker">Erste Schätzung</p>
+            <h1 id="hg-title">Deine Wärmepumpe ist grundsätzlich machbar.</h1>
+            <p id="estimateAddress">Wir haben deine Angaben übernommen.</p>
+          </div>
+          <div class="hg-badge">
+            <span>Projektstatus</span>
+            <strong id="estimateFit">Gut</strong>
+          </div>
+        </div>
+
+        <div class="hg-result-grid">
+          <article class="hg-main-card">
+            <div class="hg-product">
+              <img id="estimateModelImage" src="assets/vitocal-200-a-ie-unit.png" alt="" />
+            </div>
+            <div class="hg-product-copy">
+              <span>Empfohlenes System</span>
+              <h2 id="estimateModel">Vitocal 200-A ie</h2>
+              <p id="estimateModelCopy"></p>
+            </div>
+          </article>
+
+          <aside class="hg-price-card">
+            <span>Geschätzter Rahmen</span>
+            <strong id="estimateCost">-</strong>
+            <small>inklusive typischer Montage, ohne finale Fachplanung</small>
+            <div class="hg-price-row">
+              <span>Nach Förderung grob</span>
+              <b id="estimateNetCost">-</b>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="hg-details" aria-labelledby="details-title">
+        <div class="hg-section-heading">
+          <p class="hg-kicker">Jetzt verfeinern</p>
+          <h2 id="details-title">Lege fest, was in deinem Angebot berücksichtigt werden soll.</h2>
+        </div>
+
+        <div class="hg-config-layout">
+          <div class="hg-option-stack">
+            <fieldset class="hg-option-group">
+              <legend>Warmwasser</legend>
+              <label class="hg-option">
+                <input type="radio" name="hotWater" value="reuse" data-cost="0" checked />
+                <span><strong>Vorhandenen Speicher prüfen</strong><small>Bestand bleibt als Annahme erhalten.</small></span>
+              </label>
+              <label class="hg-option">
+                <input type="radio" name="hotWater" value="new" data-cost="3200" />
+                <span><strong>Neuen Wärmepumpenspeicher aufnehmen</strong><small>Für passende Größe und Wärmetauscherleistung.</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="hg-option-group">
+              <legend>Heizflächen</legend>
+              <label class="hg-option">
+                <input type="radio" name="emittersScope" value="check" data-cost="0" checked />
+                <span><strong>Heizkörper nur prüfen</strong><small>Keine Zusatzreserve im Kostenrahmen.</small></span>
+              </label>
+              <label class="hg-option">
+                <input type="radio" name="emittersScope" value="upgrade" data-cost="2600" />
+                <span><strong>Heizkörper-Upgrade einplanen</strong><small>Reserve für größere Heizkörper in kritischen Räumen.</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="hg-option-group">
+              <legend>Aufstellung</legend>
+              <label class="hg-option">
+                <input type="radio" name="placement" value="standard" data-cost="0" checked />
+                <span><strong>Standard-Aufstellung</strong><small>Kurze Wege und normaler Konsolenaufwand.</small></span>
+              </label>
+              <label class="hg-option">
+                <input type="radio" name="placement" value="complex" data-cost="1800" />
+                <span><strong>Komplexen Aufstellort berücksichtigen</strong><small>Mehr Leitungsweg, Schall oder Sonderkonsole.</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="hg-option-group">
+              <legend>Technikraum</legend>
+              <label class="hg-option">
+                <input type="checkbox" name="electrics" data-cost="1400" />
+                <span><strong>Elektroanpassung einplanen</strong><small>Absicherung, Leitungsweg oder Zählerplatz prüfen.</small></span>
+              </label>
+              <label class="hg-option">
+                <input type="checkbox" name="buffer" data-cost="950" />
+                <span><strong>Hydraulische Reserve aufnehmen</strong><small>Puffer-/Trennlösung als Planungsreserve.</small></span>
+              </label>
+            </fieldset>
+          </div>
+
+          <aside class="hg-sticky-summary">
+            <span>Aktualisierte Schätzung</span>
+            <strong id="refinedCost">-</strong>
+            <p id="scopeSummary">Standardumfang ausgewählt.</p>
+            <dl>
+              <div><dt>Leistung</dt><dd id="estimatePower">-</dd></div>
+              <div><dt>Gebäude</dt><dd id="estimateBuilding">-</dd></div>
+            </dl>
+            <a class="button primary wide" href="mailto:angebot@heatnext.de?subject=Viessmann%20W%C3%A4rmepumpen-Check">
+              Angebot vorbereiten
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="hg-included" aria-labelledby="included-title">
+        <div class="hg-section-heading">
+          <p class="hg-kicker">Was als Nächstes passiert</p>
+          <h2 id="included-title">Von der Schätzung zur belastbaren Planung.</h2>
+        </div>
+        <div class="hg-included-grid">
+          <article><strong>Heizlast prüfen</strong><span>Auslegung auf Gebäude, Verbrauch und Vorlauftemperatur.</span></article>
+          <article><strong>Aufstellort bewerten</strong><span>Schall, Abstand, Leitungsweg und Kondensat.</span></article>
+          <article><strong>Förderung vorbereiten</strong><span>BEG/KfW und mögliche Boni vor Auftrag prüfen.</span></article>
+          <article><strong>Viessmann Angebot</strong><span>System, Zubehör, Montageumfang und Zeitplan festlegen.</span></article>
+        </div>
+      </section>
+    </main>
+
+    <script src="estimate.js"></script>
+  </body>
+</html>

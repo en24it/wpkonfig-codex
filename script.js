@@ -11,7 +11,9 @@ const postalCodes = window.DE_POSTAL_CODES || {};
 const modelModal = document.querySelector("#modelModal");
 const modalClose = document.querySelector(".modal-close");
 const modelCards = Array.from(document.querySelectorAll(".model-card"));
+const scopeInputs = Array.from(document.querySelectorAll(".scope-builder input"));
 let lastFocusedModelCard = null;
+let activeEstimate = null;
 
 let currentStep = 0;
 
@@ -144,7 +146,7 @@ function updatePostalCode() {
   updateLocationSummary();
 }
 
-function updateResult() {
+function calculateEstimate() {
   const data = getFormData();
   const area = Number(data.area || 150);
   const consumption = Number(data.consumption || 22000);
@@ -187,6 +189,21 @@ function updateResult() {
   const model = estimatedKw >= 10 || data.emitters === "radiators" ? "Vitocal 250-A" : estimatedKw <= 7 ? "Vitocal 150-A" : "Vitocal 200-A ie";
   const fit = data.insulation === "low" && data.emitters === "radiators" ? "Planung nötig" : data.emitters === "floor" ? "Sehr gut" : "Gut";
 
+  const modelKey = model.includes("250") ? "250" : model.includes("150") ? "150" : "200";
+
+  return {
+    area,
+    city: data.city,
+    state: data.state,
+    model,
+    modelKey,
+    fit,
+    minKw,
+    maxKw,
+    costLow,
+    costHigh
+  };
+
   document.querySelector("#resultTitle").textContent = `${model} als naheliegende Richtung`;
   document.querySelector("#powerResult").textContent = `${minKw}-${maxKw} kW`;
   document.querySelector("#costResult").textContent = `${currency.format(costLow)}-${currency.format(costHigh)}`;
@@ -194,6 +211,42 @@ function updateResult() {
   document.querySelector("#resultCopy").textContent =
     `Für ${area} m² in ${data.state || "Deutschland"} wirkt ein Viessmann Luft-Wasser-System im Bereich ${minKw}-${maxKw} kW plausibel. ` +
     "Vor Angebotserstellung sollten Heizlast, Vorlauftemperatur, Aufstellort, Schallschutz und die aktuelle BEG/KfW-Förderfähigkeit geprüft werden.";
+}
+
+function updateResult() {
+  const estimate = calculateEstimate();
+
+  document.querySelector("#resultTitle").textContent = `${estimate.model} als naheliegende Richtung`;
+  document.querySelector("#powerResult").textContent = `${estimate.minKw}-${estimate.maxKw} kW`;
+  document.querySelector("#costResult").textContent = `${currency.format(estimate.costLow)}-${currency.format(estimate.costHigh)}`;
+  document.querySelector("#fitResult").textContent = estimate.fit;
+  document.querySelector("#resultCopy").textContent =
+    `Für ${estimate.area} m² in ${estimate.state || "Deutschland"} wirkt ein Viessmann Luft-Wasser-System im Bereich ${estimate.minKw}-${estimate.maxKw} kW plausibel. ` +
+    "Vor Angebotserstellung sollten Heizlast, Vorlauftemperatur, Aufstellort, Schallschutz und die aktuelle BEG/KfW-Förderfähigkeit geprüft werden.";
+}
+
+function showEstimatePage() {
+  const estimate = calculateEstimate();
+  sessionStorage.setItem("heatnextEstimate", JSON.stringify(estimate));
+  window.location.href = "estimate.html";
+}
+
+function updateScopeEstimate() {
+  if (!activeEstimate) return;
+
+  const selectedInputs = scopeInputs.filter((input) => input.checked);
+  const addonCost = selectedInputs.reduce((sum, input) => sum + Number(input.dataset.cost || 0), 0);
+  const refinedLow = activeEstimate.costLow + addonCost;
+  const refinedHigh = activeEstimate.costHigh + addonCost;
+  const selectedLabels = selectedInputs
+    .filter((input) => Number(input.dataset.cost || 0) > 0)
+    .map((input) => input.closest(".scope-option")?.querySelector("strong")?.textContent)
+    .filter(Boolean);
+
+  document.querySelector("#refinedCost").textContent = `${currency.format(refinedLow)}-${currency.format(refinedHigh)}`;
+  document.querySelector("#scopeSummary").textContent = selectedLabels.length
+    ? `Enthält zusätzlich: ${selectedLabels.join(", ")}.`
+    : "Standardumfang ausgewählt.";
 }
 
 function openModelModal(modelKey, trigger) {
@@ -225,6 +278,10 @@ function closeModelModal() {
 
 nextBtn.addEventListener("click", () => {
   if (!validateStep()) return;
+  if (currentStep === steps.length - 2) {
+    showEstimatePage();
+    return;
+  }
   showStep(currentStep + 1);
 });
 
@@ -233,6 +290,10 @@ backBtn.addEventListener("click", () => {
 });
 
 zipInput.addEventListener("input", updatePostalCode);
+
+scopeInputs.forEach((input) => {
+  input.addEventListener("change", updateScopeEstimate);
+});
 
 modelCards.forEach((card) => {
   card.addEventListener("click", () => {
