@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Heatnext | Viessmann Wärmepumpen-Check</title>
+    <meta
+      name="description"
+      content="Interaktiver Wärmepumpen-Check für den deutschen Markt mit Fokus auf Viessmann Luft-Wasser-Wärmepumpen."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#start" aria-label="Heatnext Startseite">
+        <span class="brand-mark">H</span>
+        <span>Heatnext</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <a href="#check">Check</a>
+        <a href="#modelle">Viessmann</a>
+        <a href="#ablauf">Ablauf</a>
+      </nav>
+      <a class="header-action" href="#check">Angebot prüfen</a>
+    </header>
+
+    <main id="start">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="file:///C:/Users/Flo/Nextcloud/NeueEnergie24/03_Produktunterlagen/62_Viessmann/02_WP%20-%20Vitocal%20150_200_250/Viessmann%20Vitocal%20200-A%20ie/Vitocal_200-A_ie_Milieu_Abstract_1200.PNG"
+          alt="Viessmann Vitocal 200-A Wärmepumpe als abstrakte Hausdarstellung"
+        />
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Viessmann Wärmepumpen-Check für Deutschland</p>
+          <h1 id="hero-title">In 2 Minuten zur realistischen Wärmepumpen-Einschätzung.</h1>
+          <p class="hero-copy">
+            Prüfe, welche Viessmann Luft-Wasser-Wärmepumpe zu deinem Haus passt,
+            welche Größenordnung sinnvoll ist und wo dein Modernisierungsprojekt startet.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#check">Kostenlos starten</a>
+            <a class="button secondary" href="#modelle">Modelle ansehen</a>
+          </div>
+          <dl class="hero-metrics" aria-label="Kurzfakten">
+            <div>
+              <dt>2 min</dt>
+              <dd>Online-Check</dd>
+            </div>
+            <div>
+              <dt>DE</dt>
+              <dd>Förder-Logik</dd>
+            </div>
+            <div>
+              <dt>Viessmann</dt>
+              <dd>Fokus</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="trust-band" aria-label="Vorteile">
+        <div>
+          <strong>Gebäude zuerst</strong>
+          <span>Wohnfläche, Baujahr und Heizkörper fließen direkt ein.</span>
+        </div>
+        <div>
+          <strong>Deutschland-fit</strong>
+          <span>Mit Förder-Check, Netzanschluss und Fachpartner-Termin.</span>
+        </div>
+        <div>
+          <strong>Viessmann-orientiert</strong>
+          <span>Empfehlungen für Vitocal Luft-Wasser-Systeme.</span>
+        </div>
+      </section>
+
+      <section id="check" class="estimator-section" aria-labelledby="check-title">
+        <div class="section-intro">
+          <p class="eyebrow">Online-Einschätzung</p>
+          <h2 id="check-title">Plane deine Wärmepumpe ohne Rätselraten.</h2>
+          <p>
+            Der Rechner ist eine Vorabschätzung für Ein- und Zweifamilienhäuser.
+            Die finale Auslegung erfolgt durch Heizlastberechnung und Vor-Ort-Termin.
+          </p>
+        </div>
+
+        <div class="estimator-shell">
+          <aside class="progress-panel" aria-label="Fortschritt">
+            <div class="progress-step is-active" data-progress="0">
+              <span>1</span>
+              <p>Standort</p>
+            </div>
+            <div class="progress-step" data-progress="1">
+              <span>2</span>
+              <p>Gebäude</p>
+            </div>
+            <div class="progress-step" data-progress="2">
+              <span>3</span>
+              <p>Daten</p>
+            </div>
+            <div class="progress-step" data-progress="3">
+              <span>4</span>
+              <p>Heizung</p>
+            </div>
+            <div class="progress-step" data-progress="4">
+              <span>5</span>
+              <p>Ergebnis</p>
+            </div>
+          </aside>
+
+          <form class="estimator" id="estimateForm">
+            <fieldset class="form-step is-active" data-step="0">
+              <legend>Wo soll die Wärmepumpe installiert werden?</legend>
+              <label>
+                Postleitzahl
+                <input name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="z. B. 50667" required />
+              </label>
+              <label>
+                Ort
+                <input name="city" id="cityInput" placeholder="wird automatisch ausgefüllt" readonly required />
+                <span class="field-hint" id="zipHint">Gib eine deutsche PLZ ein.</span>
+              </label>
+              <label>
+                Bundesland
+                <select name="state" required>
+                  <option value="">Bitte auswählen</option>
+                  <option>Baden-Württemberg</option>
+                  <option>Bayern</option>
+                  <option>Berlin</option>
+                  <option>Brandenburg</option>
+                  <option>Bremen</option>
+                  <option>Hamburg</option>
+                  <option>Hessen</option>
+                  <option>Mecklenburg-Vorpommern</option>
+                  <option>Niedersachsen</option>
+                  <option>Nordrhein-Westfalen</option>
+                  <option>Rheinland-Pfalz</option>
+                  <option>Saarland</option>
+                  <option>Sachsen</option>
+                  <option>Sachsen-Anhalt</option>
+                  <option>Schleswig-Holstein</option>
+                  <option>Thüringen</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="1">
+              <p class="step-kicker">Standort erkannt</p>
+              <div class="location-summary" aria-live="polite">
+                <span id="locationSummary">Deutschland</span>
+                <small>Wir nutzen den Standort nur für regionale Plausibilität und Förderhinweise.</small>
+              </div>
+              <legend>Welche Art von Haus möchtest du mit einer Viessmann Wärmepumpe ausstatten?</legend>
+              <div class="choice-grid">
+                <label class="choice-card">
+                  <input type="radio" name="property" value="single" required checked />
+                  <span class="choice-icon" aria-hidden="true">⌂</span>
+                  <strong>Einfamilienhaus</strong>
+                  <small>Freistehendes Haus mit eigener Heizungsanlage.</small>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="property" value="row" required />
+                  <span class="choice-icon" aria-hidden="true">▦</span>
+                  <strong>Reihenhaus oder Doppelhaushälfte</strong>
+                  <small>Kompakter Aufstellort, Schall und Abstand sind besonders wichtig.</small>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="property" value="dual" required />
+                  <span class="choice-icon" aria-hidden="true">▥</span>
+                  <strong>Zweifamilienhaus</strong>
+                  <small>Mehr Wohnfläche und Warmwasserbedarf für die Auslegung.</small>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="2">
+              <legend>Welche Eckdaten hat das Gebäude?</legend>
+              <label>
+                Wohnfläche
+                <input name="area" type="number" min="60" max="420" value="150" required />
+                <span class="unit">m²</span>
+              </label>
+              <label>
+                Baujahr
+                <select name="year" required>
+                  <option value="old">vor 1978</option>
+                  <option value="mid">1978 bis 1994</option>
+                  <option value="new" selected>1995 bis 2015</option>
+                  <option value="modern">ab 2016</option>
+                </select>
+              </label>
+              <label>
+                Dämmstandard
+                <select name="insulation" required>
+                  <option value="low">kaum modernisiert</option>
+                  <option value="medium" selected>teilweise modernisiert</option>
+                  <option value="high">gut gedämmt</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="3">
+              <legend>Wie wird aktuell geheizt?</legend>
+              <label>
+                Aktuelle Heizung
+                <select name="heating" required>
+                  <option value="gas" selected>Gas</option>
+                  <option value="oil">Öl</option>
+                  <option value="electric">Nachtspeicher / Strom direkt</option>
+                  <option value="pellet">Pellet / Holz</option>
+                </select>
+              </label>
+              <label>
+                Wärmeverteilung
+                <select name="emitters" required>
+                  <option value="radiators">Heizkörper</option>
+                  <option value="mixed" selected>Heizkörper und Fußbodenheizung</option>
+                  <option value="floor">Fußbodenheizung</option>
+                </select>
+              </label>
+              <label>
+                Jährlicher Verbrauch
+                <input name="consumption" type="number" min="6000" max="60000" value="22000" required />
+                <span class="unit">kWh</span>
+              </label>
+            </fieldset>
+
+            <section class="form-step result-step" data-step="4" aria-live="polite">
+              <p class="result-label">Deine erste Einschätzung</p>
+              <h3 id="resultTitle">Vitocal Empfehlung wird berechnet</h3>
+              <div class="result-grid">
+                <div>
+                  <span>Leistungsbereich</span>
+                  <strong id="powerResult">-</strong>
+                </div>
+                <div>
+                  <span>Investition grob</span>
+                  <strong id="costResult">-</strong>
+                </div>
+                <div>
+                  <span>Projekt-Fit</span>
+                  <strong id="fitResult">-</strong>
+                </div>
+              </div>
+              <p id="resultCopy"></p>
+              <a class="button primary wide" href="mailto:angebot@heatnext.de?subject=Viessmann%20W%C3%A4rmepumpen-Check">
+                Beratungstermin anfragen
+              </a>
+            </section>
+
+            <div class="form-actions">
+              <button class="button ghost" type="button" id="backBtn">Zurück</button>
+              <button class="button primary" type="button" id="nextBtn">Weiter</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="modelle" class="models-section" aria-labelledby="models-title">
+        <div class="section-intro compact">
+          <p class="eyebrow">Viessmann Fokus</p>
+          <h2 id="models-title">Vitocal Systeme für typische Wohnhäuser.</h2>
+        </div>
+        <div class="model-grid">
+          <button class="model-card" type="button" data-model="250">
+            <img src="assets/vitocal-250-a-unit.jpg" alt="Vitocal 250-A Außengerät" />
+            <span class="chip">Monoblock</span>
+            <h3>Vitocal 250-A</h3>
+            <p>Für Modernisierungen mit höherer Vorlauftemperatur und bestehender Heizkörperstruktur.</p>
+          </button>
+          <button class="model-card" type="button" data-model="200">
+            <img src="assets/vitocal-200-a-ie-unit.jpg" alt="Vitocal 200-A ie Außengerät" />
+            <span class="chip">Intelligent Energy</span>
+            <h3>Vitocal 200-A ie</h3>
+            <p>Intelligent-Energy-Lösung für gut vorbereitete Einfamilienhäuser und gemischte Wärmeverteilung.</p>
+          </button>
+          <button class="model-card" type="button" data-model="150">
+            <img src="assets/vitocal-150-a-unit.jpg" alt="Vitocal 150-A Außengerät" />
+            <span class="chip">Leise</span>
+            <h3>Vitocal 150-A</h3>
+            <p>Attraktiver Einstieg für kleinere Gebäude, Reihenhäuser und effiziente Sanierungsfälle.</p>
+          </button>
+        </div>
+      </section>
+
+      <section id="ablauf" class="process-section" aria-labelledby="process-title">
+        <div class="section-intro compact">
+          <p class="eyebrow">Nächste Schritte</p>
+          <h2 id="process-title">Vom Check zur installierten Anlage.</h2>
+        </div>
+        <ol class="process-list">
+          <li><strong>Online-Check</strong><span>Daten erfassen und erste Größenordnung erhalten.</span></li>
+          <li><strong>Fachplanung</strong><span>Heizlast, Hydraulik, Schall und Aufstellort prüfen.</span></li>
+          <li><strong>Förderung</strong><span>BEG/KfW-Förderfähigkeit und regionale Optionen vorbereiten.</span></li>
+          <li><strong>Installation</strong><span>Viessmann System montieren, einregeln und dokumentieren.</span></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Heatnext</span>
+      <span>Unverbindliche Vorabschätzung. Keine finale Fachplanung.</span>
+    </footer>
+
+    <div class="modal-backdrop" id="modelModal" hidden>
+      <section class="model-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" aria-label="Fenster schließen">×</button>
+        <img class="modal-product-image" id="modalImage" alt="" />
+        <p class="eyebrow" id="modalEyebrow">Viessmann Vitocal</p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalLead"></p>
+        <div class="modal-detail-grid">
+          <div>
+            <span>Typischer Einsatz</span>
+            <strong id="modalUse"></strong>
+          </div>
+          <div>
+            <span>Stärke</span>
+            <strong id="modalStrength"></strong>
+          </div>
+          <div>
+            <span>Planungshinweis</span>
+            <strong id="modalPlanning"></strong>
+          </div>
+        </div>
+        <p id="modalBody"></p>
+      </section>
+    </div>
+
+    <script src="data/plz-de.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
